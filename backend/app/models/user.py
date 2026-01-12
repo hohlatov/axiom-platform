@@ -1,9 +1,8 @@
-from sqlalchemy import Column, Integer, String, Boolean, CheckConstraint
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, Boolean, CheckConstraint, Enum as SAEnum
+from app.db.base import Base
 import enum
-from sqlalchemy import Enum as SAEnum
 
-Base = declarative_base()
+
 
 class UserRole(str, enum.Enum):
     student = "student"

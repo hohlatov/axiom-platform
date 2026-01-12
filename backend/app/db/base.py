@@ -6,7 +6,7 @@ Base = declarative_base()
 
 engine = create_async_engine(
     settings.DATABASE_URL,
-    echo=settings.DB_ECHO,                     # Управляем через .env
+    echo=True,                     # Управляем через .env
     pool_size=settings.DB_POOL_SIZE,           # Например, 20
     max_overflow=settings.DB_MAX_OVERFLOW,     # Например, 20
     pool_recycle=3600,                         # Пересоздавать соединения каждые 1 час

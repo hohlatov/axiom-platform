@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     GIGACHAT_TOP_P: float = 0.9
 
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    
+
 
 print("📁 Current working directory:", os.getcwd())
 print("📄 .env exists:", os.path.exists(".env"))

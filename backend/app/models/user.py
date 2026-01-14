@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, CheckConstraint, Enum as SAEnum
+from sqlalchemy.orm import relationship
 from app.db.base import Base
+from app.models.material import Material
 import enum
 
 
@@ -18,3 +20,4 @@ class User(Base):
     full_name = Column(String(100), nullable=True)
     is_active = Column(Boolean, default=True, nullable=False)
     role = Column(SAEnum(UserRole), default=UserRole.student, nullable=False)
+    materials = relationship("Material", back_populates="owner")

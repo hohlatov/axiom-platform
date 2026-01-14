@@ -22,3 +22,10 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="AXIOM Platform", lifespan=lifespan)
 
 app.include_router(api_router, prefix="/api/v1")
+
+@app.on_event("startup")
+async def show_routes():
+    print("\n=== СПИСОК ВСЕХ МАРШРУТОВ ===")
+    for r in app.routes:
+        print(f"{r.path} → {r.name} ({r.methods})")
+    print("============================\n")

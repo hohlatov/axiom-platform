@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from pydantic import PostgresDsn, SecretStr, Field
+from pydantic import PostgresDsn, SecretStr, Field, ConfigDict
 import os
 from pprint import pprint
 
@@ -23,18 +23,6 @@ class Settings(BaseSettings):
     GIGACHAT_TEMPERATURE: float = 0.7
     GIGACHAT_TOP_P: float = 0.9
 
-    model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    model_config = ConfigDict(env_file=".env")
     
-
-
-print("📁 Current working directory:", os.getcwd())
-print("📄 .env exists:", os.path.exists(".env"))
-
-print("\n🔍 All env vars containing 'gigachat' (case-insensitive):")
-pprint({
-    k: (v[:10] + "..." if len(v) > 10 else v)
-    for k, v in os.environ.items()
-    if "gigachat" in k.lower()
-})
-
 settings = Settings()

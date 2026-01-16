@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.api.v1.endpoints import api_router
 from app.db.base import Base, engine
+from app.db.redis import cache
 import logging
 
 logger = logging.getLogger(__name__)
@@ -29,3 +30,7 @@ async def show_routes():
     for r in app.routes:
         print(f"{r.path} → {r.name} ({r.methods})")
     print("============================\n")
+    
+@app.on_event("shutdown")
+async def shutdown_event():
+    await cache.close()

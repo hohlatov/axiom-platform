@@ -14,7 +14,9 @@ class Settings(BaseSettings):
     DB_ECHO: bool = False
     DB_POOL_SIZE: int = 20
     DB_MAX_OVERFLOW: int = 20
-    
+    REDIS_URL: str = "redis://localhost:6379"
+    REDIS_TTL_SECONDS: int = 3600
+        
     # Внешние сервисы
     GIGACHAT_CREDENTIALS: SecretStr
     GIGACHAT_VERIFY_SSL: bool = False
